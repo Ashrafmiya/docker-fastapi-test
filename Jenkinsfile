@@ -10,20 +10,20 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker-compose build'
+                 'docker-compose build'
             }
         }
 
         stage('Run Application') {
             steps {
-                sh 'docker-compose up -d'
+                 'docker-compose up -d'
             }
         }
     }
 
     post {
         always {
-            sh 'docker-compose down'
+             'docker-compose down'
         }
     }
 }
