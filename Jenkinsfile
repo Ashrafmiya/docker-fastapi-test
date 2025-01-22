@@ -4,26 +4,30 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
+                // Fetch code from the Git repository
                 checkout scm
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                 'docker-compose build'
+                // Build the Docker image
+                sh 'docker-compose build'
             }
         }
 
         stage('Run Application') {
             steps {
-                 'docker-compose up -d'
+                // Start the application container
+                sh 'docker-compose up -d'
             }
         }
     }
 
     post {
         always {
-             'docker-compose down'
+            // Clean up containers after the build
+            sh 'docker-compose down'
         }
     }
 }
